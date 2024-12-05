@@ -10,48 +10,46 @@ type Message = {
 
 const Hero = () => {
   const [messages, setMessages] = useState<Message[]>([]); // Displayed messages
-  const [currentTypingMessage, setCurrentTypingMessage] = useState<Message | null>(null); // Message being typed
+  const [currentTypingMessage, setCurrentTypingMessage] = useState<string>(""); // Message being typed
+  const [isThinking, setIsThinking] = useState(false); // Typing indicator
   const [currentIndex, setCurrentIndex] = useState(0); // Index of the current message being processed
 
   const chatMessages: Message[] = [
     { text: "Hi! How can I help you?", type: "ai" },
     { text: "What can you do?", type: "user" },
     {
-      text: "I was trained with the content available on this website so I can answer any questions or provide you information about Chatbolt.",
+      text: "I was trained with the content available on this website so I can answer any questions or provide you information about TalkEdge.",
       type: "ai",
     },
   ];
 
   useEffect(() => {
     if (currentIndex < chatMessages.length) {
-      const currentMessage = chatMessages[currentIndex];
-      setCurrentTypingMessage({ text: "...", type: currentMessage.type }); // Show "typing" indicator
+      const message = chatMessages[currentIndex];
+      setIsThinking(true); // Show the `...` indicator
+      setCurrentTypingMessage("..."); // Show dots initially
 
-      // Simulate a delay for typing effect
-      const typingTimeout = setTimeout(() => {
-        let charIndex = 0;
+      const dotsTimeout = setTimeout(() => {
+        setIsThinking(false); // Hide the `...` indicator
+        setCurrentTypingMessage(""); // Clear dots before typing begins
 
-        const typingInterval = setInterval(() => {
-          setCurrentTypingMessage((prev) =>
-            prev
-              ? {
-                  ...prev,
-                  text: currentMessage.text.slice(0, charIndex + 1),
-                }
-              : null
-          );
-          charIndex++;
-
-          if (charIndex === currentMessage.text.length) {
-            clearInterval(typingInterval); // Stop typing animation
-            setMessages((prev) => [...prev, currentMessage]); // Add the completed message
-            setCurrentTypingMessage(null); // Clear the typing message
+        // Start typing simulation
+        const typeCharacter = (charIndex: number) => {
+          if (charIndex < message.text.length) {
+            setCurrentTypingMessage((prev) => prev + message.text[charIndex]);
+            setTimeout(() => typeCharacter(charIndex + 1), 50); // Recursive typing
+          } else {
+            // Typing is complete
+            setMessages((prev) => [...prev, message]); // Add the completed message
+            setCurrentTypingMessage(""); // Clear the typing message
             setCurrentIndex((prev) => prev + 1); // Move to the next message
           }
-        }, 50); // Typing speed: 50ms per character
-      }, 1000); // Delay before typing begins
+        };
 
-      return () => clearTimeout(typingTimeout);
+        typeCharacter(0); // Start typing from the first character
+      }, 1000); // Delay to show `...` for 1 second
+
+      return () => clearTimeout(dotsTimeout);
     }
   }, [currentIndex]);
 
@@ -111,28 +109,83 @@ const Hero = () => {
             <h3 className="text-blue-600 font-bold">AI Assistant</h3>
           </div>
 
-          {/* Messages */}
           <div className="h-[400px] overflow-y-auto space-y-4">
-            {messages.map((message, index) => (
-              <div
-                key={index}
-                className={`p-4 rounded-md w-[80%] ${getMessageStyle(
-                  message.type
-                )}`}
-              >
-                {message.text}
-              </div>
-            ))}
-            {currentTypingMessage && (
-              <div
-                className={`p-4 rounded-md w-[80%] ${getMessageStyle(
-                  currentTypingMessage.type
-                )}`}
-              >
-                {currentTypingMessage.text}
-              </div>
-            )}
+  {/* Render all completed messages */}
+  {messages.map((message, index) => (
+    <div
+      key={index}
+      className={`flex ${
+        message.type === "ai" ? "justify-start" : "justify-end"
+      }`}
+    >
+      <div
+        className={`px-4 py-2 rounded-lg ${
+          message.type === "ai"
+            ? "bg-gray-100 text-black"
+            : "bg-customOrange text-white"
+        }`}
+        style={{
+          display: "inline-block", // Allow box scaling
+          maxWidth: "80%", // Limit max width
+          wordWrap: "break-word", // Prevent text overflow
+          margin: "0.5rem 0", // Add vertical spacing
+        }}
+      >
+        {message.text}
+      </div>
+    </div>
+  ))}
+
+  {/* Render the currently typing message */}
+  {currentTypingMessage && (
+    <div
+      className={`flex ${
+        chatMessages[currentIndex]?.type === "ai"
+          ? "justify-start"
+          : "justify-end"
+      }`}
+    >
+      <div
+        className={`px-4 py-2 rounded-lg ${
+          chatMessages[currentIndex]?.type === "ai"
+            ? "bg-gray-100 text-black"
+            : "bg-customOrange text-white"
+        }`}
+        style={{
+          display: "inline-block", // Allow box scaling
+          maxWidth: "80%", // Limit max width
+          wordWrap: "break-word", // Prevent text overflow
+          margin: "0.5rem 0", // Add vertical spacing
+        }}
+      >
+        {/* Show bouncing dots if still typing */}
+        {isThinking ? (
+          <div className="flex items-center space-x-1">
+            <span
+              className="h-2 w-2 rounded-full bg-gray-400 animate-bounce"
+              style={{ animationDelay: "0s" }}
+            ></span>
+            <span
+              className="h-2 w-2 rounded-full bg-gray-400 animate-bounce"
+              style={{ animationDelay: "0.2s" }}
+            ></span>
+            <span
+              className="h-2 w-2 rounded-full bg-gray-400 animate-bounce"
+              style={{ animationDelay: "0.4s" }}
+            ></span>
           </div>
+        ) : (
+          /* Display the typing message progressively */
+          currentTypingMessage
+        )}
+      </div>
+    </div>
+  )}
+</div>
+
+
+
+
 
           {/* Input */}
           <div className="flex items-center mt-4 border rounded-md px-4 py-2">
