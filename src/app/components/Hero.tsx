@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { FaPaperPlane } from "react-icons/fa";
 
 // Define the Message type
 type Message = {
@@ -108,7 +109,8 @@ const Hero = () => {
             </div>
             <h3 className="text-blue-600 font-bold">AI Assistant</h3>
           </div>
-
+          <hr className="border-gray-300 my-2" /> {/* Add separator */}
+          
           <div className="h-[400px] overflow-y-auto space-y-4">
   {/* Render all completed messages */}
   {messages.map((message, index) => (
@@ -186,7 +188,7 @@ const Hero = () => {
 
 
 
-
+<hr className="border-gray-300 my-2" /> {/* Add separator */}
           {/* Input */}
           <div className="flex items-center mt-4 border rounded-md px-4 py-2">
             <input
@@ -195,20 +197,7 @@ const Hero = () => {
               className="flex-grow focus:outline-none"
             />
             <button>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-blue-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M5 10l7-7m0 0l7 7m-7-7v18"
-                />
-              </svg>
+            <FaPaperPlane className="h-6 w-6 text-blue-500" />
             </button>
           </div>
         </div>
