@@ -42,15 +42,3 @@ body {
     transform: translateY(-5px);
   }
 }
-
-.animate-bounce {
-  animation: bounce 1s infinite;
-}
-
-.delay-100 {
-  animation-delay: 0.1s;
-}
-
-.delay-200 {
-  animation-delay: 0.2s;
-}
