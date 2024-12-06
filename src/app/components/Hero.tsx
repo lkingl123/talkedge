@@ -91,14 +91,16 @@ const Hero = () => {
 
       {/* Right Content */}
       <div className="lg:w-1/2 mt-10 lg:mt-0 relative">
-        {/* Background Animation */}
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] animate-spin-slow">
-          <img
-            src="/react-icon.svg" /* Replace with the correct icon path */
-            alt="React Icon"
-            className="w-full h-full opacity-20"
-          />
-        </div>
+
+        {/* <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[110px] animate-spin-slow z-0">
+  <img
+    src="/react-icon.svg" 
+    alt="React Icon"
+    className="w-full h-full opacity-10"
+  />
+</div> */}
+
+
 
         {/* AI Chat Widget */}
         <div className="bg-white p-6 shadow-lg rounded-lg relative z-10 w-[400px] mx-auto">
@@ -110,7 +112,6 @@ const Hero = () => {
             <h3 className="text-blue-600 font-bold">AI Assistant</h3>
           </div>
           <hr className="border-gray-300 my-2" /> {/* Add separator */}
-          
           <div className="h-[400px] overflow-y-auto space-y-4">
   {/* Render all completed messages */}
   {messages.map((message, index) => (
@@ -162,7 +163,7 @@ const Hero = () => {
       >
         {/* Show bouncing dots if still typing */}
         {isThinking ? (
-          <div className="flex items-center space-x-1">
+          <div className="flex items-center space-x-1 mt-2">
             <span
               className="h-2 w-2 rounded-full bg-gray-400 animate-bounce"
               style={{ animationDelay: "0s" }}

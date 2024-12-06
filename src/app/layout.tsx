@@ -1,6 +1,7 @@
 import './globals.css';
 import NotificationBar from './components/NotificationBar';
 import Navbar from './components/Navbar';
+import SpinnerWrapper from "./components/SpinnerWrapper";
 
 export const metadata = {
   title: 'TalkEdge - AI Chatbot Solutions',
@@ -17,7 +18,7 @@ export default function RootLayout({
       <body className="vsc-initialized">
         <NotificationBar />
         <Navbar />
-        {children}
+        <SpinnerWrapper>{children}</SpinnerWrapper>
       </body>
     </html>
   );
