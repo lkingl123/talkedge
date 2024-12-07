@@ -54,29 +54,27 @@ const Hero = () => {
     }
   }, [currentIndex]);
 
-  const getMessageStyle = (type: "ai" | "user") => {
-    if (type === "ai") {
-      return "bg-gray-100 text-black text-left ml-0";
-    }
-    return "bg-customOrange text-white text-right mr-0";
-  };
-
   return (
-    <section className="relative flex flex-col lg:flex-row items-center lg:justify-between px-5 md:px-10 lg:px-20 py-16 bg-gray-50">
+    <section className="relative flex flex-col lg:flex-row items-center justify-between px-5 md:px-10 lg:px-20 py-16 bg-gray-50">
       {/* Left Content */}
-      <div className="text-center lg:text-left lg:w-1/2">
-        <h1 className="text-[90px] font-bold leading-tight text-black mb-4">
-          Your own <span className="text-customOrange">ChatGPT chatbot</span>
+      <div
+        className="text-center lg:text-left flex-1 space-y-6 mx-auto lg:ml-32"
+        style={{ maxWidth: "480px" }}
+      >
+        <h1 className="text-[60px] md:text-[90px] font-bold leading-tight text-black">
+          Your own <br />
+          <span className="text-customOrange">ChatGPT</span> <br />
+          chatbot
         </h1>
-        <p className="text-[22px] text-black mb-6 leading-relaxed">
-          Train your chatbots with your data from any file or website. Chat to ask
-          questions and find information, or embed it as a widget on your website
-          to assist your users.
+        <p className="text-lg md:text-[22px] text-gray-700 leading-relaxed">
+          Train your chatbots with your data from any file or website. Chat to
+          ask questions and find information, or embed it as a widget on your
+          website to assist your users.
         </p>
-        <div className="flex justify-center lg:justify-start space-x-4">
+        <div className="flex flex-col md:flex-row justify-center lg:justify-start gap-4">
           <a
             href="/create-chatbot"
-            className="bg-black text-white text-[15px] font-medium px-[15px] py-[10px] rounded-md hover:bg-gray-800"
+            className="bg-customOrange text-white text-lg font-medium px-6 py-3 rounded-md hover:bg-orange-600 transition"
           >
             Create a Chatbot
           </a>
@@ -90,107 +88,170 @@ const Hero = () => {
       </div>
 
       {/* Right Content */}
-      <div className="lg:w-1/2 mt-10 lg:mt-0 relative">
+      <div className="relative flex-1 flex justify-center lg:justify-start items-center mt-10 lg:mt-0">
+        {/* Embedded Styles for Animations */}
+        <style>
+          {`
+            @keyframes outer-counterclockwise {
+              from {
+                transform: rotate(0deg);
+              }
+              to {
+                transform: rotate(-360deg);
+              }
+            }
 
-        {/* <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[110px] animate-spin-slow z-0">
-  <img
-    src="/react-icon.svg" 
-    alt="React Icon"
-    className="w-full h-full opacity-10"
-  />
-</div> */}
+            @keyframes inner-clockwise {
+              from {
+                transform: rotate(0deg);
+              }
+              to {
+                transform: rotate(360deg);
+              }
+            }
 
+            .animate-outer-counterclockwise {
+              animation: outer-counterclockwise 50s linear infinite;
+              transform-origin: 540px 540px;
+            }
 
+            .animate-inner-clockwise {
+              animation: inner-clockwise 50s linear infinite;
+              transform-origin: 540px 540px;
+            }
+          `}
+        </style>
+
+        {/* Spinning Ellipse Background */}
+        <div className="absolute inset-0 flex justify-center items-center z-0">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1080 1080"
+            className="w-[600px] h-[600px]"
+          >
+            {/* Outer Ellipses (Counterclockwise) */}
+            <g className="animate-outer-counterclockwise">
+              {[0, 72, 144, 216, 288].map((angle) => (
+                <ellipse
+                  key={angle}
+                  cx="540"
+                  cy="540"
+                  rx="525"
+                  ry="160"
+                  style={{
+                    stroke: "#0057E4",
+                    fill: "none",
+                    strokeWidth: 3,
+                    transform: `rotate(${angle}deg)`,
+                    transformOrigin: "540px 540px",
+                  }}
+                />
+              ))}
+            </g>
+
+            {/* Inner Ellipses (Clockwise) */}
+            <g className="animate-inner-clockwise">
+              {[0, 72, 144, 216, 288].map((angle) => (
+                <ellipse
+                  key={angle}
+                  cx="540"
+                  cy="540"
+                  rx="490"
+                  ry="170"
+                  style={{
+                    stroke: "#0057E4",
+                    fill: "none",
+                    strokeWidth: 4,
+                    transform: `rotate(${angle}deg)`,
+                    transformOrigin: "540px 540px",
+                  }}
+                />
+              ))}
+            </g>
+          </svg>
+        </div>
 
         {/* AI Chat Widget */}
-        <div className="bg-white p-6 shadow-lg rounded-lg relative z-10 w-[400px] mx-auto">
-          {/* Header */}
+        <div className="bg-white p-6 shadow-lg rounded-lg relative z-10 w-[350px] mx-auto">
           <div className="flex items-center mb-4">
             <div className="bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center text-white font-bold mr-2">
               <span>AI</span>
             </div>
             <h3 className="text-blue-600 font-bold">AI Assistant</h3>
           </div>
-          <hr className="border-gray-300 my-2" /> {/* Add separator */}
-          <div className="h-[400px] overflow-y-auto space-y-4">
-  {/* Render all completed messages */}
-  {messages.map((message, index) => (
-    <div
-      key={index}
-      className={`flex ${
-        message.type === "ai" ? "justify-start" : "justify-end"
-      }`}
-    >
-      <div
-        className={`px-4 py-2 rounded-lg ${
-          message.type === "ai"
-            ? "bg-gray-100 text-black"
-            : "bg-customOrange text-white"
-        }`}
-        style={{
-          display: "inline-block", // Allow box scaling
-          maxWidth: "80%", // Limit max width
-          wordWrap: "break-word", // Prevent text overflow
-          margin: "0.5rem 0", // Add vertical spacing
-        }}
-      >
-        {message.text}
-      </div>
-    </div>
-  ))}
+          <hr className="border-gray-300 my-2" />
+          <div className="h-[280px] overflow-y-auto space-y-1">
+            {/* Render all completed messages */}
+            {messages.map((message, index) => (
+              <div
+                key={index}
+                className={`flex ${
+                  message.type === "ai" ? "justify-start" : "justify-end"
+                }`}
+              >
+                <div
+                  className={`px-4 py-2 rounded-lg ${
+                    message.type === "ai"
+                      ? "bg-gray-100 text-black"
+                      : "bg-customOrange text-white"
+                  }`}
+                  style={{
+                    display: "inline-block",
+                    maxWidth: "80%",
+                    wordWrap: "break-word",
+                    margin: "0.5rem 0",
+                  }}
+                >
+                  {message.text}
+                </div>
+              </div>
+            ))}
 
-  {/* Render the currently typing message */}
-  {currentTypingMessage && (
-    <div
-      className={`flex ${
-        chatMessages[currentIndex]?.type === "ai"
-          ? "justify-start"
-          : "justify-end"
-      }`}
-    >
-      <div
-        className={`px-4 py-2 rounded-lg ${
-          chatMessages[currentIndex]?.type === "ai"
-            ? "bg-gray-100 text-black"
-            : "bg-customOrange text-white"
-        }`}
-        style={{
-          display: "inline-block", // Allow box scaling
-          maxWidth: "80%", // Limit max width
-          wordWrap: "break-word", // Prevent text overflow
-          margin: "0.5rem 0", // Add vertical spacing
-        }}
-      >
-        {/* Show bouncing dots if still typing */}
-        {isThinking ? (
-          <div className="flex items-center space-x-1 mt-2">
-            <span
-              className="h-2 w-2 rounded-full bg-gray-400 animate-bounce"
-              style={{ animationDelay: "0s" }}
-            ></span>
-            <span
-              className="h-2 w-2 rounded-full bg-gray-400 animate-bounce"
-              style={{ animationDelay: "0.2s" }}
-            ></span>
-            <span
-              className="h-2 w-2 rounded-full bg-gray-400 animate-bounce"
-              style={{ animationDelay: "0.4s" }}
-            ></span>
+            {/* Render the currently typing message */}
+            {currentTypingMessage && (
+              <div
+                className={`flex ${
+                  chatMessages[currentIndex]?.type === "ai"
+                    ? "justify-start"
+                    : "justify-end"
+                }`}
+              >
+                <div
+                  className={`px-4 py-2 rounded-lg ${
+                    chatMessages[currentIndex]?.type === "ai"
+                      ? "bg-gray-100 text-black"
+                      : "bg-customOrange text-white"
+                  }`}
+                  style={{
+                    display: "inline-block",
+                    maxWidth: "80%",
+                    wordWrap: "break-word",
+                    margin: "0.5rem 0",
+                  }}
+                >
+                  {isThinking ? (
+                    <div className="flex items-center space-x-1 mt-2">
+                      <span
+                        className="h-2 w-2 rounded-full bg-gray-400 animate-bounce"
+                        style={{ animationDelay: "0s" }}
+                      ></span>
+                      <span
+                        className="h-2 w-2 rounded-full bg-gray-400 animate-bounce"
+                        style={{ animationDelay: "0.2s" }}
+                      ></span>
+                      <span
+                        className="h-2 w-2 rounded-full bg-gray-400 animate-bounce"
+                        style={{ animationDelay: "0.4s" }}
+                      ></span>
+                    </div>
+                  ) : (
+                    currentTypingMessage
+                  )}
+                </div>
+              </div>
+            )}
           </div>
-        ) : (
-          /* Display the typing message progressively */
-          currentTypingMessage
-        )}
-      </div>
-    </div>
-  )}
-</div>
 
-
-
-
-<hr className="border-gray-300 my-2" /> {/* Add separator */}
-          {/* Input */}
           <div className="flex items-center mt-4 border rounded-md px-4 py-2">
             <input
               type="text"
@@ -198,7 +259,7 @@ const Hero = () => {
               className="flex-grow focus:outline-none"
             />
             <button>
-            <FaPaperPlane className="h-6 w-6 text-blue-500" />
+              <FaPaperPlane className="h-6 w-6 text-blue-500" />
             </button>
           </div>
         </div>
