@@ -2,8 +2,8 @@ import './globals.css';
 import NotificationBar from './components/NotificationBar';
 import Navbar from './components/Navbar';
 import SpinnerWrapper from "./components/SpinnerWrapper";
-import Footer from "./components/Footer"
-import ChatBot from "./components/ChatBot"
+import Footer from "./components/Footer";
+import ChatBot from "./components/ChatBot";
 
 export const metadata = {
   title: 'TalkEdge - AI Chatbot Solutions',
@@ -21,7 +21,12 @@ export default function RootLayout({
         <NotificationBar />
         <Navbar />
         <SpinnerWrapper>{children}</SpinnerWrapper>
-        <ChatBot />
+
+        {/* Ensure ChatBot has a higher z-index */}
+        <div className="relative z-30">
+          <ChatBot />
+        </div>
+
         <Footer />
       </body>
     </html>

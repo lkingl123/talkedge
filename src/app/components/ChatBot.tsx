@@ -4,13 +4,15 @@ import { useState, useRef, useEffect } from "react";
 import { FaCommentAlt, FaTimes } from "react-icons/fa";
 
 const ChatBot = () => {
-  const [messages, setMessages] = useState<{ role: string; content: string }[]>([
-    {
-      role: "bot",
-      content:
-        "Hi, and welcome to Plumber Solutions! To book an immediate appointment click on “Book a Call” above. Need immediate assistance? Call us at 555-123-4567.",
-    },
-  ]);
+  const [messages, setMessages] = useState<{ role: string; content: string }[]>(
+    [
+      {
+        role: "bot",
+        content:
+          "Hi, and welcome to TalkEdge! To book an immediate appointment, click on 'Book a Call' above. Need immediate assistance? Call us at 555-123-4567.",
+      },
+    ]
+  );
   const [input, setInput] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
@@ -50,10 +52,7 @@ const ChatBot = () => {
       const typingDelay = Math.min(Math.max(replyLength / 10, 1000), 3000);
 
       setTimeout(() => {
-        setMessages((prev) => [
-          ...prev,
-          { role: "bot", content: data.reply },
-        ]);
+        setMessages((prev) => [...prev, { role: "bot", content: data.reply }]);
         setIsTyping(false);
       }, typingDelay);
     } catch (error) {
@@ -94,17 +93,16 @@ const ChatBot = () => {
 
       {/* Chat Window */}
       <div
-  className={`bg-white w-[300px] h-[400px] sm:w-[350px] sm:h-[500px] shadow-xl rounded-lg mt-4 flex flex-col border border-gray-300 overflow-hidden transform transition-transform duration-300 ease-in-out ${
-    isOpen ? "scale-100 opacity-100" : "scale-0 opacity-0"
-  }`}
-  style={{
-    transformOrigin: "bottom right",
-    position: "absolute",
-    bottom: "72px",
-    right: "16px", // Adjusted for smaller width
-  }}
->
-
+        className={`bg-white w-[300px] h-[400px] sm:w-[350px] sm:h-[500px] shadow-xl rounded-lg mt-4 flex flex-col border border-gray-300 overflow-hidden transform transition-transform duration-300 ease-in-out ${
+          isOpen ? "scale-100 opacity-100" : "scale-0 opacity-0"
+        }`}
+        style={{
+          transformOrigin: "bottom right",
+          position: "absolute",
+          bottom: "72px",
+          right: "16px", // Adjusted for smaller width
+        }}
+      >
         {/* Header */}
         <div className="bg-blue-500 text-white p-3 font-bold flex items-center justify-between rounded-t-lg shadow-md">
           <span> 💬 AI Assistant</span>

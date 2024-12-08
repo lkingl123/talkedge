@@ -58,15 +58,15 @@ const Hero = () => {
     <section className="relative flex flex-col lg:flex-row items-center justify-between px-5 md:px-10 lg:px-20 py-16 bg-gray-50">
       {/* Left Content */}
       <div
-        className="text-center lg:text-left flex-1 space-y-6 mx-auto lg:ml-32"
+        className="text-center lg:text-left flex-1 space-y-6 mx-auto lg:ml-48"
         style={{ maxWidth: "480px" }}
       >
-        <h1 className="text-[60px] md:text-[90px] font-bold leading-tight text-black">
+        <h1 className="text-[40px] md:text-[60px] lg:text-[90px] font-bold leading-[1.1] text-black tracking-tight">
           Your own <br />
           <span className="text-customOrange">ChatGPT</span> <br />
           chatbot
         </h1>
-        <p className="text-lg md:text-[22px] text-gray-700 leading-relaxed">
+        <p className="text-lg md:text-[22px] text-gray-500 leading-relaxed tracking-tight">
           Train your chatbots with your data from any file or website. Chat to
           ask questions and find information, or embed it as a widget on your
           website to assist your users.
@@ -74,13 +74,13 @@ const Hero = () => {
         <div className="flex flex-col md:flex-row justify-center lg:justify-start gap-4">
           <a
             href="/create-chatbot"
-            className="bg-customOrange text-white text-lg font-medium px-6 py-3 rounded-md hover:bg-orange-600 transition"
+            className="bg-customOrange text-white text-lg font-medium px-6 py-3 rounded-md hover:bg-black transition"
           >
             Create a Chatbot
           </a>
           <a
             href="/how-it-works"
-            className="border border-gray-800 text-black px-6 py-3 rounded-md hover:bg-gray-100 text-lg font-medium"
+            className="bg-gray-200 text-black px-6 py-3 rounded-md hover:bg-gray-300 text-lg font-medium"
           >
             See how it works
           </a>
@@ -127,7 +127,7 @@ const Hero = () => {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1080 1080"
-            className="w-[600px] h-[600px]"
+            className="w-[450px] md:w-[600px] h-[450px] md:h-[600px]"
           >
             {/* Outer Ellipses (Counterclockwise) */}
             <g className="animate-outer-counterclockwise">
@@ -172,7 +172,7 @@ const Hero = () => {
         </div>
 
         {/* AI Chat Widget */}
-        <div className="bg-white p-6 shadow-lg rounded-lg relative z-10 w-[350px] mx-auto">
+        <div className="bg-white p-6 shadow-lg rounded-lg relative z-20 w-[350px] md:w-[400px] mx-auto">
           <div className="flex items-center mb-4">
             <div className="bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center text-white font-bold mr-2">
               <span>AI</span>
@@ -192,7 +192,7 @@ const Hero = () => {
                 <div
                   className={`px-4 py-2 rounded-lg ${
                     message.type === "ai"
-                      ? "bg-gray-100 text-black"
+                      ? "bg-gray-200 text-black"
                       : "bg-customOrange text-white"
                   }`}
                   style={{
