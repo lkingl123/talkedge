@@ -27,7 +27,7 @@ const Navbar = () => {
         {/* Menu Links */}
         <div className="hidden lg:flex space-x-8 text-black">
           <Link
-            href="/how-it-works"
+            href="/"
             className="px-4 py-2 font-semibold text-customOrange hover:bg-gray-100 rounded-md"
           >
             How it works
@@ -76,7 +76,7 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="absolute top-16 right-0 bg-white shadow-lg w-full lg:hidden py-8 px-6 rounded-md z-10 transition-all ease-in-out duration-300">
           <Link
-            href="/how-it-works"
+            href="/"
             className="block text-lg text-black py-3 px-4 hover:text-customOrange hover:bg-gray-100 rounded-md"
             onClick={toggleMenu} // Close the menu after clicking
           >

@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import SpinnerWrapper from "./components/SpinnerWrapper";
 import Footer from "./components/Footer";
 import ChatBot from "./components/ChatBot";
+import FAQ from "./components/FAQ";
 
 export const metadata = {
   title: 'TalkEdge - AI Chatbot Solutions',
@@ -28,7 +29,7 @@ export default function RootLayout({
         <div className="flex-grow">
           <SpinnerWrapper>{children}</SpinnerWrapper>
         </div>
-
+        <FAQ />
         {/* ChatBot */}
         <div className="relative z-30">
           <ChatBot />

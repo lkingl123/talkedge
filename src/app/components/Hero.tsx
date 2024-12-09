@@ -55,7 +55,7 @@ const Hero = () => {
   }, [currentIndex]);
 
   return (
-    <section className="relative flex flex-col lg:flex-row items-center justify-between px-5 md:px-10 lg:px-20 py-16 bg-gray-50">
+    <section className="relative flex flex-col lg:flex-row items-center justify-between px-5 md:px-10 lg:px-20 py-16">
       {/* Left Content */}
       <div
         className="text-center lg:text-left flex-1 space-y-6 mx-auto lg:ml-48"
@@ -172,7 +172,7 @@ const Hero = () => {
         </div>
 
         {/* AI Chat Widget */}
-        <div className="bg-white p-6 shadow-lg rounded-lg relative z-20 w-[350px] md:w-[400px] mx-auto">
+        <div className="bg-white p-6 shadow-lg rounded-lg relative z-20 w-[340px] md:w-[340px] mx-auto">
           <div className="flex items-center mb-4">
             <div className="bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center text-white font-bold mr-2">
               <span>AI</span>
