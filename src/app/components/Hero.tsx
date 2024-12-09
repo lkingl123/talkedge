@@ -55,7 +55,8 @@ const Hero = () => {
   }, [currentIndex]);
 
   return (
-    <section className="relative flex flex-col lg:flex-row items-center justify-between px-5 md:px-10 lg:px-20 py-16">
+    <section className="relative flex flex-col lg:flex-row items-center justify-between px-5 md:px-10 lg:px-20 py-16 mb-32">
+
       {/* Left Content */}
       <div
         className="text-center lg:text-left flex-1 space-y-6 mx-auto lg:ml-48"
