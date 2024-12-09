@@ -8,6 +8,9 @@ import ChatBot from "./components/ChatBot";
 export const metadata = {
   title: 'TalkEdge - AI Chatbot Solutions',
   description: 'Build, train, and deploy AI chatbots with ease.',
+  icons: {
+    icon: '/talk-edge.png', 
+  },
 };
 
 export default function RootLayout({
@@ -17,12 +20,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="vsc-initialized">
+      <body className="vsc-initialized flex flex-col min-h-screen">
         <NotificationBar />
         <Navbar />
-        <SpinnerWrapper>{children}</SpinnerWrapper>
+        
+        {/* Main Content */}
+        <div className="flex-grow">
+          <SpinnerWrapper>{children}</SpinnerWrapper>
+        </div>
 
-        {/* Ensure ChatBot has a higher z-index */}
+        {/* ChatBot */}
         <div className="relative z-30">
           <ChatBot />
         </div>

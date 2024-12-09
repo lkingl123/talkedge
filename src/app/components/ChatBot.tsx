@@ -9,7 +9,7 @@ const ChatBot = () => {
       {
         role: "bot",
         content:
-          "Hi, and welcome to TalkEdge! To book an immediate appointment, click on 'Book a Call' above. Need immediate assistance? Call us at 555-123-4567.",
+          "Hi, welcome to TalkEdge! How can I help?",
       },
     ]
   );
@@ -139,12 +139,18 @@ const ChatBot = () => {
           {isTyping && (
             <div className="flex justify-start">
               <div className="max-w-xs px-4 py-2 rounded-lg bg-gray-200 text-gray-700 italic flex items-center">
-                <span>Typing</span>
-                <div className="typing-dots ml-2">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
+                <span
+                        className="h-2 w-2 rounded-full bg-gray-400 animate-bounce"
+                        style={{ animationDelay: "0s" }}
+                      ></span>
+                      <span
+                        className="h-2 w-2 rounded-full bg-gray-400 animate-bounce"
+                        style={{ animationDelay: "0.2s" }}
+                      ></span>
+                      <span
+                        className="h-2 w-2 rounded-full bg-gray-400 animate-bounce"
+                        style={{ animationDelay: "0.4s" }}
+                      ></span>
               </div>
             </div>
           )}

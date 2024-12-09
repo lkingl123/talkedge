@@ -40,7 +40,7 @@ export default function SpinnerWrapper({
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background-color: #3498db;
+            background-color: #FF5500;
             animation: bounce 1.5s infinite ease-in-out;
           }
 

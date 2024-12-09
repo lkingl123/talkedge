@@ -232,15 +232,15 @@ const Hero = () => {
                   {isThinking ? (
                     <div className="flex items-center space-x-1 mt-2">
                       <span
-                        className="h-2 w-2 rounded-full bg-gray-400 animate-bounce"
+                        className="h-2 w-2 rounded-full bg-white animate-bounce"
                         style={{ animationDelay: "0s" }}
                       ></span>
                       <span
-                        className="h-2 w-2 rounded-full bg-gray-400 animate-bounce"
+                        className="h-2 w-2 rounded-full bg-white animate-bounce"
                         style={{ animationDelay: "0.2s" }}
                       ></span>
                       <span
-                        className="h-2 w-2 rounded-full bg-gray-400 animate-bounce"
+                        className="h-2 w-2 rounded-full bg-white animate-bounce"
                         style={{ animationDelay: "0.4s" }}
                       ></span>
                     </div>
