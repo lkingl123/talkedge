@@ -23,9 +23,9 @@ const Page = () => {
   return (
     <div className="flex flex-col lg:flex-row">
       {/* Sidebar */}
-      <div className="w-full lg:w-1/4 bg-gray-100 p-6 space-y-6">
-        <h2 className="text-2xl font-semibold mb-6">Chatbot API</h2>
-
+      <div className="w-full lg:w-1/4 bg-gray-100 p-4 space-y-6">
+        <h2 className="text-2xl font-semibold mt-4">Chatbot API</h2> {/* Reduced margin */}
+        
         {/* Getting Started */}
         <button
           onClick={() => setSelectedAction("gettingStarted")}
@@ -37,6 +37,7 @@ const Page = () => {
         >
           Getting Started
         </button>
+
 
         {/* Chatbot Section */}
         <h3 className="font-semibold text-xl mt-6">Chatbot</h3>
