@@ -20,6 +20,10 @@ import MessageChat from "./chat/MessageChat"; // Added MessageChat
 const Page = () => {
   const [selectedAction, setSelectedAction] = useState("gettingStarted");
 
+  const handleSelect = (section: string) => {
+    setSelectedAction(section);
+  };
+
   return (
     <div className="flex flex-col lg:flex-row">
       {/* Sidebar */}
@@ -28,7 +32,7 @@ const Page = () => {
         
         {/* Getting Started */}
         <button
-          onClick={() => setSelectedAction("gettingStarted")}
+          onClick={() => handleSelect("gettingStarted")}
           className={`w-full text-left p-2 rounded-md transition-colors duration-300 ${
             selectedAction === "gettingStarted"
               ? "bg-orange-500 text-white"
@@ -38,11 +42,10 @@ const Page = () => {
           Getting Started
         </button>
 
-
         {/* Chatbot Section */}
         <h3 className="font-semibold text-xl mt-6">Chatbot</h3>
         <button
-          onClick={() => setSelectedAction("createChatbot")}
+          onClick={() => handleSelect("createChatbot")}
           className={`w-full text-left p-2 mb-2 rounded-md transition-colors duration-300 ${
             selectedAction === "createChatbot"
               ? "bg-green-500 text-white"
@@ -55,7 +58,7 @@ const Page = () => {
           </span>
         </button>
         <button
-          onClick={() => setSelectedAction("listChatbots")}
+          onClick={() => handleSelect("listChatbots")}
           className={`w-full text-left p-2 mb-2 rounded-md transition-colors duration-300 ${
             selectedAction === "listChatbots"
               ? "bg-blue-500 text-white"
@@ -68,7 +71,7 @@ const Page = () => {
           </span>
         </button>
         <button
-          onClick={() => setSelectedAction("getChatbot")}
+          onClick={() => handleSelect("getChatbot")}
           className={`w-full text-left p-2 mb-2 rounded-md transition-colors duration-300 ${
             selectedAction === "getChatbot"
               ? "bg-blue-500 text-white"
@@ -81,7 +84,7 @@ const Page = () => {
           </span>
         </button>
         <button
-          onClick={() => setSelectedAction("updateChatbot")}
+          onClick={() => handleSelect("updateChatbot")}
           className={`w-full text-left p-2 mb-2 rounded-md transition-colors duration-300 ${
             selectedAction === "updateChatbot"
               ? "bg-purple-500 text-white"
@@ -94,7 +97,7 @@ const Page = () => {
           </span>
         </button>
         <button
-          onClick={() => setSelectedAction("deleteChatbot")}
+          onClick={() => handleSelect("deleteChatbot")}
           className={`w-full text-left p-2 mb-2 rounded-md transition-colors duration-300 ${
             selectedAction === "deleteChatbot"
               ? "bg-red-500 text-white"
@@ -110,8 +113,12 @@ const Page = () => {
         {/* Source Section */}
         <h3 className="font-semibold text-xl mt-6">Source</h3>
         <button
-          onClick={() => setSelectedAction("addSources")}
-          className="w-full text-left p-2 mb-2 rounded-md transition-colors duration-300 hover:bg-green-400 active:bg-green-600"
+          onClick={() => handleSelect("addSources")}
+          className={`w-full text-left p-2 mb-2 rounded-md transition-colors duration-300 ${
+            selectedAction === "addSources"
+              ? "bg-green-500 text-white"
+              : "hover:bg-green-400 active:bg-green-600"
+          }`}
         >
           Add Sources
           <span className="ml-4 text-white bg-green-600 px-2 py-1 rounded-md">
@@ -119,8 +126,12 @@ const Page = () => {
           </span>
         </button>
         <button
-          onClick={() => setSelectedAction("listSources")}
-          className="w-full text-left p-2 mb-2 rounded-md transition-colors duration-300 hover:bg-blue-400 active:bg-blue-600"
+          onClick={() => handleSelect("listSources")}
+          className={`w-full text-left p-2 mb-2 rounded-md transition-colors duration-300 ${
+            selectedAction === "listSources"
+              ? "bg-blue-500 text-white"
+              : "hover:bg-blue-400 active:bg-blue-600"
+          }`}
         >
           List Sources
           <span className="ml-4 text-white bg-blue-600 px-2 py-1 rounded-md">
@@ -128,8 +139,12 @@ const Page = () => {
           </span>
         </button>
         <button
-          onClick={() => setSelectedAction("retrainSources")}
-          className="w-full text-left p-2 mb-2 rounded-md transition-colors duration-300 hover:bg-purple-400 active:bg-purple-600"
+          onClick={() => handleSelect("retrainSources")}
+          className={`w-full text-left p-2 mb-2 rounded-md transition-colors duration-300 ${
+            selectedAction === "retrainSources"
+              ? "bg-purple-500 text-white"
+              : "hover:bg-purple-400 active:bg-purple-600"
+          }`}
         >
           Retrain Sources
           <span className="ml-4 text-white bg-purple-600 px-2 py-1 rounded-md">
@@ -137,8 +152,12 @@ const Page = () => {
           </span>
         </button>
         <button
-          onClick={() => setSelectedAction("deleteSources")}
-          className="w-full text-left p-2 mb-2 rounded-md transition-colors duration-300 hover:bg-red-400 active:bg-red-600"
+          onClick={() => handleSelect("deleteSources")}
+          className={`w-full text-left p-2 mb-2 rounded-md transition-colors duration-300 ${
+            selectedAction === "deleteSources"
+              ? "bg-red-500 text-white"
+              : "hover:bg-red-400 active:bg-red-600"
+          }`}
         >
           Delete Sources
           <span className="ml-4 text-white bg-red-600 px-2 py-1 rounded-md">
@@ -149,8 +168,12 @@ const Page = () => {
         {/* Chat Section */}
         <h3 className="font-semibold text-xl mt-6">Chat</h3>
         <button
-          onClick={() => setSelectedAction("createChat")}
-          className="w-full text-left p-2 mb-2 rounded-md transition-colors duration-300 hover:bg-green-400 active:bg-green-600"
+          onClick={() => handleSelect("createChat")}
+          className={`w-full text-left p-2 mb-2 rounded-md transition-colors duration-300 ${
+            selectedAction === "createChat"
+              ? "bg-green-500 text-white"
+              : "hover:bg-green-400 active:bg-green-600"
+          }`}
         >
           Create a Chat
           <span className="ml-4 text-white bg-green-600 px-2 py-1 rounded-md">
@@ -158,8 +181,12 @@ const Page = () => {
           </span>
         </button>
         <button
-          onClick={() => setSelectedAction("listChats")}
-          className="w-full text-left p-2 mb-2 rounded-md transition-colors duration-300 hover:bg-blue-400 active:bg-blue-600"
+          onClick={() => handleSelect("listChats")}
+          className={`w-full text-left p-2 mb-2 rounded-md transition-colors duration-300 ${
+            selectedAction === "listChats"
+              ? "bg-blue-500 text-white"
+              : "hover:bg-blue-400 active:bg-blue-600"
+          }`}
         >
           List Chats
           <span className="ml-4 text-white bg-blue-600 px-2 py-1 rounded-md">
@@ -167,8 +194,12 @@ const Page = () => {
           </span>
         </button>
         <button
-          onClick={() => setSelectedAction("getChat")}
-          className="w-full text-left p-2 mb-2 rounded-md transition-colors duration-300 hover:bg-indigo-400 active:bg-indigo-600"
+          onClick={() => handleSelect("getChat")}
+          className={`w-full text-left p-2 mb-2 rounded-md transition-colors duration-300 ${
+            selectedAction === "getChat"
+              ? "bg-indigo-500 text-white"
+              : "hover:bg-indigo-400 active:bg-indigo-600"
+          }`}
         >
           Get a Chat
           <span className="ml-4 text-white bg-indigo-600 px-2 py-1 rounded-md">
@@ -176,8 +207,12 @@ const Page = () => {
           </span>
         </button>
         <button
-          onClick={() => setSelectedAction("deleteChat")}
-          className="w-full text-left p-2 mb-2 rounded-md transition-colors duration-300 hover:bg-red-400 active:bg-red-600"
+          onClick={() => handleSelect("deleteChat")}
+          className={`w-full text-left p-2 mb-2 rounded-md transition-colors duration-300 ${
+            selectedAction === "deleteChat"
+              ? "bg-red-500 text-white"
+              : "hover:bg-red-400 active:bg-red-600"
+          }`}
         >
           Delete a Chat
           <span className="ml-4 text-white bg-red-600 px-2 py-1 rounded-md">
@@ -185,8 +220,12 @@ const Page = () => {
           </span>
         </button>
         <button
-          onClick={() => setSelectedAction("messageChat")}
-          className="w-full text-left p-2 mb-2 rounded-md transition-colors duration-300 hover:bg-blue-400 active:bg-blue-600"
+          onClick={() => handleSelect("messageChat")}
+          className={`w-full text-left p-2 mb-2 rounded-md transition-colors duration-300 ${
+            selectedAction === "messageChat"
+              ? "bg-blue-500 text-white"
+              : "hover:bg-blue-400 active:bg-blue-600"
+          }`}
         >
           Message with a Chat
           <span className="ml-4 text-white bg-blue-600 px-2 py-1 rounded-md">
@@ -246,7 +285,7 @@ const Page = () => {
         {selectedAction === "getChat" && <GetChat />}
         {selectedAction === "deleteChat" && <DeleteChat />}
         {selectedAction === "messageChat" && <MessageChat />}
-      </div>
+      </div> 
     </div>
   );
 };

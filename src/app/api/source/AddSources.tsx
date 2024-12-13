@@ -1,12 +1,18 @@
 import React from "react";
 
+// Custom span styling for "required"
+const CustomSpan = () => (
+  <span className="inline-block bg-customOrange text-white px-3 py-1 rounded-md text-xs font-semibold">
+    REQUIRED
+  </span>
+);
+
 const AddSources = () => {
   return (
     <div className="container mx-auto bg-white p-8 rounded-lg shadow-md">
       {/* Title Section */}
-      <p className="mb-6 text-gray-600">
-        Add new sources to a chatbot.
-      </p>
+      <h2 className="text-3xl font-bold mb-6">Add Sources</h2>
+      <p className="mb-6 text-gray-600">Add new sources to a chatbot.</p>
 
       {/* POST Method Section */}
       <h4 className="text-2xl font-semibold mb-4">Method</h4>
@@ -14,7 +20,7 @@ const AddSources = () => {
         <span className="inline-block text-white bg-green-500 px-3 py-1 rounded-md text-sm">
           POST
         </span>
-        <span> /chatbots/{`{chatbot_id}`}/sources</span>
+        <span> /chatbots/{`:chatbot_id`}/sources</span>
       </div>
 
       {/* Request Section */}
@@ -51,10 +57,10 @@ const AddSources = () => {
       <h4 className="text-2xl font-semibold mb-4">Parameters</h4>
       <div className="bg-gray-100 p-4 rounded-md text-sm font-mono text-gray-800 mb-6">
         <pre>{`{
-  sources: "The array of sources to be added"
-  source.content: "The source content"
-  source.type: "The source type"
-  source.name: "The text name (only if type: text)"
+  sources: "The array of sources to be added" <CustomSpan />
+  source.content: "The source content" <CustomSpan />
+  source.type: "The source type" <CustomSpan />
+  source.name: "The text name (only if type: text)" <CustomSpan />
 }`}</pre>
       </div>
 
